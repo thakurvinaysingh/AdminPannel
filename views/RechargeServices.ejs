@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Recharge API Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body style="width: 100%;">
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <h2 class="text-center mb-4">Recharge API Form</h2>
+        <div id="responseMessage" style="font-size: 34px; color: greenyellow;"></div>
+        <form id="rechargeForm">
+          <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="text" class="form-control" id="number" name="number" required>
+          </div>
+          <div class="form-group">
+            <label for="providerId">Provider ID</label>
+            <select class="form-control" id="provider_id" name="provider_id" required>
+              <!-- Options will be populated dynamically -->
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" required>
+          </div>
+
+          <div class="form-group">
+            <label for="clientId">Client ID</label>
+            <input type="text" class="form-control" id="clientId" name="client_id" placeholder="Enter Client ID"
+              required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Handle form submission
+      document.getElementById("rechargeForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        // Get form data
+        const number = document.getElementById("number").value;
+        const providerSelect = document.getElementById("provider_id");
+        const selectedProviderOption = providerSelect.options[providerSelect.selectedIndex];
+        const provider_id = selectedProviderOption.value;
+        const client_id = document.getElementById("clientId").value;
+        const amount = document.getElementById("amount").value;
+
+
+
+        // Perform AJAX request to process the recharge
+        try {
+          const response = await fetch("/processTransaction", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              serviceType: "RechargeServices",
+              number: number,
+              provider_id: provider_id,
+              amount: amount,
+              client_id: client_id,
+              retailerId: "<%= user ? user._id : 'default_id' %>"
+            }),
+          });
+
+
+
+          const data = await response.json();
+          //const paymentData = await paymentResponse.json();
+          const responseMessage = document.getElementById("responseMessage");
+          responseMessage.innerHTML = `<p class="text-success">${data.message}</p>`;
+          
+        //responseMessage.innerHTML = `<p class="text-success">${paymentData.paymentMessage}</p>`;
+          
+          document.getElementById("rechargeForm").reset();
+
+        } catch (error) {
+          // Display error message
+          const responseMessage = document.getElementById("responseMessage");
+          responseMessage.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+        }
+      });
+    });
+  </script>
+  <script>
+    async function fetchProviders() {
+      try {
+        const providerResponse = await fetch("/getProvider");
+        const providerData = await providerResponse.json();
+        console.log(providerData, 'Provider Data:');
+        const providerDropdown = document.getElementById('provider_id');
+
+        const providerData1 = providerData.providers.slice(0, 10);
+        providerData1.forEach(provider => {
+          const option = document.createElement('option');
+          option.value = provider.provider_id; // Set the value to provider_id
+          option.textContent = provider.provider_name;
+
+          providerDropdown.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching provider list:', error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchProviders);
+  </script>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+</body>
+<%- include('footer.ejs') %>
+
+</html>

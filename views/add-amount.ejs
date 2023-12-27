@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Head section (title, CSS, etc.) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  
+  <div class="container bg-light my-5 p-5">
+    <!-- Form to input the amount -->
+    <% if (data) { %>
+    <h2 class="text-center">Transfer Amount to User's Wallet</h2>
+    <div class="row my-5 p-3 ">
+    <form class="row" id="transferAmountForm" >
+      <div class="col-md-6 mb-3">
+        <label for="userId" class="form-label">User ID:</label>
+        <input type="text" class="form-control" id="userId" name="userId" value="<%= data._id %>" readonly>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="userName" class="form-label">User Name:</label>
+        <input type="text" class="form-control" id="userName" name="userName" value="<%= data.name %>" readonly>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="userEmail" class="form-label">User Email:</label>
+        <input type="text" class="form-control" id="userEmail" name="userEmail" value="<%= data.email %>" readonly>
+      </div>
+      <div class="col-md-6 mb-3 center">
+        <label for="amount" class="form-label">Amount to Transfer:</label>
+        <input type="number" class="form-control" id="amount" name="amount" required>
+      </div>
+      <div class="d-grid gap-1 col-4 mx-auto">
+      <button type="submit" class="btn btn-secondary">Transfer Amount</button>
+      <a href="/readData" class="btn btn-secondary">Back</a></div>
+    </form>
+    <% } else { %>
+      <p>User not found.</p>
+    <% } %>
+
+  </div>
+  </div>
+  
+  <script>
+    // JavaScript to handle form submission and API call
+    document.getElementById('transferAmountForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      const userId = formData.get('userId');
+      const amount = parseFloat(formData.get('amount'));
+
+      if (!userId || isNaN(amount) || amount <= 0) {
+        alert("Invalid input. Please enter a valid amount.");
+        return;
+      }
+
+      // Send a POST request to the backend API to transfer amount to the user
+      fetch("/transfer-amount", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, amount }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        window.location.reload(); // Refresh the page after successful transfer
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("An error occurred while transferring amount.");
+      });
+    });
+  </script>
+</body>
+</html>

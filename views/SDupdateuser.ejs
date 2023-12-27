@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:rgb(185, 210, 185);
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    form input[type="text"],
+    form input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    form input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <h1> Master-Update User</h1>
+  <% if (user) { %>
+    <form action="/SDupdateuserID" method="post">
+      <input type="hidden" name="userid" value="<%= user._id %>">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="<%= user.name %>"><br>
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" value="<%= user.email %>"><br>
+      <!-- <label for="role">Role:</label> -->
+      <!-- <input type="text" name="role" id="role" value="<%= user.role %>"><br> -->
+      <!-- <label>Role:</label><br>
+      <input type="radio" name="role" id="user" value="user" <% if (user.role === "user") { %>checked<% } %>/n>
+      <label for="user">User</label>
+      <input type="radio" name="role" id="super-distributor" value="super-distributor" <% if (user.role === "super-distributor") { %>checked<% } %>/n>
+      <label for="super-distributor">Super Distributor</label>
+      <input type="radio" name="role" id="distributor" value="distributor" <% if (user.role === "distributor") { %>checked<% } %>/n>
+      <label for="distributor">Distributor</label>
+      <input type="radio" name="role" id="retailer" value="retailer" <% if (user.role === "retailer") { %>checked<% } %>/n>
+      <label for="retailer">Retailer</label>
+      <br> -->
+      <input type="submit" value="Update" onclick="return confirm('Are you sure you want to update this user?')">
+    </form>
+  <% } else { %>
+    <p>User not found.</p>
+  <% } %>
+  <a href="/SDReadData">Back to Users</a>
+</body>
+</html>
+
+

@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg p-1" style="background-color: #2b5c7b !important;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="color: #ffffff;">Services</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item dropdown">
+            <% if (services.RechargeServicesLink === 'active' || user.role === 'admin') { %>
+            <a class="nav-link dropdown-toggle" style="color: #ffffff;" href="#" id="RechargeServicesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              RechargeServices
+            </a>
+            
+            <ul class="dropdown-menu" id="RechargeServicesMenu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/RechargeServices">Form</a></li>
+              <li><a class="dropdown-item" href="">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+            <% } %>
+
+          <% if (services.MoneyServicesLink === 'active' || user.role === 'admin') { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color: #ffffff;" href="#" id="MoneyServicesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              MoneyServices
+            </a>
+            <ul class="dropdown-menu" id="MoneyServicesMenu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/MoneyServices">Form</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> 
+           <% } %>
+
+          <% if (services.AepsServicesLink === 'active' || user.role === 'admin') { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color: #ffffff;" href="#" id="AepsServicesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              AepsServices
+            </a>
+            <ul class="dropdown-menu" id="AepsServicesMenu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/AepsServices">Form</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> 
+           <% } %>
+
+
+          <% if (services.PayoutServicesLink === 'active' || user.role === 'admin') { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color: #ffffff;" href="#" id="PayoutServicesLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              PayoutServices
+            </a>
+            <ul class="dropdown-menu" id="PayoutServicesMenu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/PayoutServices">From</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <% } %>
+        </ul>
+        <!-- <form class="d-flex"> -->
+        <!-- </form> &nbsp; &nbsp;
+        <form action="/logout?_method=DELETE" method="POST">
+          <button class="nav-link fw-bold py-1 px-0 btn p=3 btn-dark text-white" type="submit"  >Logout</button>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- another methoods to implemantation.
+    <script>
+      
+      const services = {
+    RechargeServicesLink: '<%= services.RechargeServicesLink %>',
+    MoneyServicesLink: '<%= services.MoneyServicesLink %>',
+    AepsServicesLink: '<%= services.AepsServicesLink %>',
+    PayoutServicesLink: '<%= services.PayoutServicesLink %>',
+  };
+      function setInitialVisibility() {
+  for (const [serviceId, status] of Object.entries(services)) {
+    console.log(`Service ID: ${serviceId}, Status: ${status}`);
+    const navbarItem = document.getElementById(serviceId + "-navbar");
+    console.log(navbarItem); // Make sure this is not null
+    if (status === "active") {
+      navbarItem.style.display = "block";
+    } else {
+      navbarItem.style.display = "none";
+    }
+  }
+}
+ setInitialVisibility();
+    </script> -->

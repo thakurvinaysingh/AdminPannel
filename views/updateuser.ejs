@@ -1,0 +1,480 @@
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update User</title>
+  <style>
+    /* Your existing CSS styles */
+  </style>
+</head>
+<body>
+  <h1>Update User</h1>
+  <% if (user) { %>
+    <form action="/updateuser" method="post">
+      <input type="hidden" name="userid" value="<%= user._id %>">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="<%= user.name %>"><br>
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" value="<%= user.email %>"><br>
+      <label for="mobileNo">Mobile Number:</label>
+      <input type="number" name="mobileNo" id="mobileNo" value="<%= user.mobileNo %>"><br>
+      <label for="ShopName">Shop Name:</label>
+      <input type="text" name="ShopName" id="ShopName" value="<%= user.ShopName %>"><br>
+      <label for="OfficeAddress">Office Address:</label>
+      <input type="text" name="OfficeAddress" id="OfficeAddress" value="<%= user.OfficeAddress %>"><br>
+      <label for="LockAmount">Lock Amount:</label>
+      <input type="number" name="LockAmount" id="LockAmount" value="<%= user.LockAmount %>"><br>
+      <label>Role:</label><br>
+      <input type="radio" name="role" id="user" value="user" <% if (user.role === "user") { %>checked<% } %>/n>
+      <label for="user">User</label>
+      <input type="radio" name="role" id="super-distributor" value="super-distributor" <% if (user.role === "super-distributor") { %>checked<% } %>/n>
+      <label for="super-distributor">Super Distributor</label>
+      <input type="radio" name="role" id="distributor" value="distributor" <% if (user.role === "distributor") { %>checked<% } %>/n>
+      <label for="distributor">Distributor</label>
+      <input type="radio" name="role" id="retailer" value="retailer" <% if (user.role === "retailer") { %>checked<% } %>/n>
+      <label for="retailer">Retailer</label>
+      <br>
+      <label for="ParmanentAddress">Permanent Address:</label>
+      <textarea name="ParmanentAddress" id="ParmanentAddress" rows="2"><%= user.ParmanentAddress %></textarea><br>
+      <label for="ParmanentCity">Permanent City:</label>
+      <input type="text" name="ParmanentCity" id="ParmanentCity" value="<%= user.ParmanentCity %>"><br>
+      <label for="ParmanentPincode">Permanent Pincode:</label>
+      <input type="number" name="ParmanentPincode" id="ParmanentPincode" value="<%= user.ParmanentPincode %>"><br>
+      <label for="ParmanentState">Permanent State:</label>
+      <input type="text" name="ParmanentState" id="ParmanentState" value="<%= user.ParmanentState %>"><br>
+      <label for="ParmanentDistrict">Permanent District:</label>
+      <input type="text" name="ParmanentDistrict" id="ParmanentDistrict" value="<%= user.ParmanentDistrict %>"><br>
+      <label for="PresentAddress">Present Address:</label>
+      <textarea name="PresentAddress" id="PresentAddress" rows="2"><%= user.PresentAddress %></textarea><br>
+      <label for="PresentCity">Present City:</label>
+      <input type="text" name="PresentCity" id="PresentCity" value="<%= user.PresentCity %>"><br>
+      <label for="PresentPincode">Present Pincode:</label>
+      <input type="number" name="PresentPincode" id="PresentPincode" value="<%= user.PresentPincode %>"><br>
+      <label for="PresentState">Present State:</label>
+      <input type="text" name="PresentState" id="PresentState" value="<%= user.PresentState %>"><br>
+      <label for="PresentDistrict">Present District:</label>
+      <input type="text" name="PresentDistrict" id="PresentDistrict" value="<%= user.PresentDistrict %>"><br>
+      <label for="RechargeServices">Recharge Services:</label>
+      <select name="RechargeServices" id="RechargeServices">
+        <option value="active" <% if (user.RechargeServices === "active") { %>selected<% } %>>Active</option>
+        <option value="inactive" <% if (user.RechargeServices === "inactive") { %>selected<% } %>>Inactive</option>
+      </select><br>
+      <label for="MoneyServices">Money Services:</label>
+      <select name="MoneyServices" id="MoneyServices">
+        <option value="active" <% if (user.MoneyServices === "active") { %>selected<% } %>>Active</option>
+        <option value="inactive" <% if (user.MoneyServices === "inactive") { %>selected<% } %>>Inactive</option>
+      </select><br>
+      <label for="AepsServices">AEPS Services:</label>
+      <select name="AepsServices" id="AepsServices">
+        <option value="active" <% if (user.AepsServices === "active") { %>selected<% } %>>Active</option>
+        <option value="inactive" <% if (user.AepsServices === "inactive") { %>selected<% } %>>Inactive</option>
+      </select><br>
+      <label for="PayoutServices">Payout Services:</label>
+      <select name="PayoutServices" id="PayoutServices">
+        <option value="active" <% if (user.PayoutServices === "active") { %>selected<% } %>>Active</option>
+        <option value="inactive" <% if (user.PayoutServices === "inactive") { %>selected<% } %>>Inactive</option>
+      </select><br>
+      <input type="submit" value="Update" onclick="return confirm('Are you sure you want to update this user?')">
+    </form>
+  <% } else { %>
+    <p>User not found.</p>
+  <% } %>
+  <a href="/ReadData">Back to Users</a>
+</body>
+</html> -->
+
+<!-- --------------------------------------------------------------------- -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>New User</title>
+</head>
+
+<body>
+    <style>
+         body{
+          background-color: rgb(191, 228, 228);
+
+        }
+    </style>
+
+    <div class="container  shadow-sm p-3 mb-5 bg-body rounded ">
+        <h1 style="text-align: center; color: rgb(39, 150, 154);">Welcome to <%= user.name %>
+        </h1>
+        <!-- <div class="mt-5 mb-5"> -->
+        <div class="row justify-content-center">
+          <% if (user) { %>
+            <form action="/updateuser" method="POST">
+                <% if (messages.successfully) { %>
+                    <div class="alert alert-danger">
+                        <strong>
+                            <%= messages.successfully %>
+                        </strong>
+                    </div>
+                    <% } %>
+                    <a href="/ReadData" class="btn btn-secondary">Back</a>
+                        <div class="row">
+                            <h1 class="mb-3 h3">User Details</h1>
+                            <div class="row mb-3">
+                              <div class="col-md-4">
+                                
+                                <input type="hidden" name="userid" value="<%= user._id %>">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required value="<%= user.name %>">
+                              </div>
+                              <div class="col-md-4">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required value="<%= user.email %>">
+                              </div>
+                              <div class="col-md-4">
+                                <label for="mobileNo" class="form-label">Mobile Number</label>
+                                <input type="number" name="mobileNo" id="mobileNo" class="form-control" placeholder="Mobile Number" required value="<%= user.mobileNo %>">
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <div class="col-md-4">
+                                <label for="role" class="form-label">Role</label>
+                                <select class="form-select" name="role" id="role" aria-label="Select Role" required>
+                                  <option value="user" <% if (user.role === "user") { %>selected<% } %>>User</option>
+                                  <option value="super-distributor" <% if (user.role === "super-distributor") { %>selected<% } %>>Super Distributor</option>
+                                  <option value="distributor" <% if (user.role === "distributor") { %>selected<% } %>>Distributor</option>
+                                  <option value="retailer" <% if (user.role === "retailer") { %>selected<% } %>>Retailer</option>
+                                </select>
+                              </div>
+                              <div class="col-md-4">
+                                <label for="ShopName" class="form-label">Shop Name</label>
+                                <input type="text" name="ShopName" id="ShopName" class="form-control" placeholder="Shop Name" value="<%= user.ShopName %>">
+                              </div>
+                              <div class="col-md-4">
+                                <label for="OfficeAddress" class="form-label">Office Address</label>
+                                <input type="text" name="OfficeAddress" id="OfficeAddress" class="form-control" placeholder="Office Address" value="<%= user.OfficeAddress %>">
+                              </div>
+                            </div>
+                            <div class="row mb-5">
+                              <div class="col-md-4">
+                                <label for="LockAmount" class="form-label">Lock Amount</label>
+                                <input type="number" name="LockAmount" id="LockAmount" class="form-control" placeholder="Lock Amount" value="<%= user.LockAmount %>">
+                              </div>
+                            </div>
+                            
+                        <hr class="hr" style="color: rgb(40, 147, 159); block-size: 2px; ">
+
+
+
+                        <div class="row">
+                          <div class="row mt-5">
+                            <h1 class="mb-3 h3">Parmanent Address</h1>
+                            <div class="col-md-4">
+                              <label for="ParmanentAddress" class="form-label">Permanent Address</label>
+                              <textarea name="ParmanentAddress" id="ParmanentAddress" class="form-control" placeholder="Permanent Address"
+                                rows="2" required><%= user.ParmanentAddress %></textarea>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="ParmanentCountry" class="form-label">Permanent Country</label>
+                              <input type="text" name="ParmanentCountry" id="countryDropdown" class="form-control" placeholder="Permanent City"
+                                value="<%= user.ParmanentCountry %>" required>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="ParmanentState" class="form-label">Permanent State</label>
+                              <input type="text" name="ParmanentState" id="stateDropdown" class="form-control" placeholder="Permanent State"
+                                value="<%= user.ParmanentState %>" required>
+                            </div>
+                            
+                          </div>
+                          <div class="row mb-5">
+                            <div class="col-md-4">
+                              <label for="ParmanentCity" class="form-label">Permanent City</label>
+                              <input type="text" name="ParmanentCity" id="cityDropdown" class="form-control" placeholder="Permanent City"
+                                value="<%= user.ParmanentCity %>" required>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="ParmanentPincode" class="form-label">Permanent Pincode</label>
+                              <input type="number" name="ParmanentPincode" id="ParmanentPincode" class="form-control"
+                                placeholder="Permanent Pincode" value="<%= user.ParmanentPincode %>" required>
+                            </div>
+                           
+                            
+                          </div>
+                        </div>
+                        <hr class="hr" style="color:rgb(40, 147, 159); block-size: 2px;">
+                        <div class="row">
+                          <div class="row mt-5">
+                            <h1 class="mb-3 h3">Present Address</h1>
+                            <div class="col-md-4">
+                              <label for="PresentAddress" class="form-label">Present Address</label>
+                              <textarea class="form-control" rows="2" name="PresentAddress" id="PresentAddress" class="form-control"
+                                placeholder="Present Address"><%= user.PresentAddress %></textarea>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="PresentCountry" class="form-label">Present Country</label>
+                              <input type="text" name="PresentCity" id="countryDropdown1 " class="form-control" placeholder="Present City"
+                                value="<%= user.PresentCountry %>">
+                            </div>
+                            <div class="col-md-4">
+                              <label for="PresentState" class="form-label">Present State</label>
+                              <input type="text" name="PresentState" id="stateDropdown1" class="form-control" placeholder="Present State"
+                                value="<%= user.PresentState %>">
+                            </div>
+                            
+                          </div>
+                          <div class="row mb-5">
+                            <div class="col-md-4">
+                              <label for="PresentCity" class="form-label">Present City</label>
+                              <input type="text" name="PresentCity" id="cityDropdown1" class="form-control" placeholder="Present City"
+                                value="<%= user.PresentCity %>">
+                            </div>
+                            <div class="col-md-4">
+                              <label for="PresentPincode" class="form-label">Present Pincode</label>
+                              <input type="number" name="PresentPincode" id="PresentPincode" class="form-control" placeholder="Present Pincode"
+                                value="<%= user.PresentPincode %>">
+                            </div>
+                            
+                          
+                          </div>
+                        </div>
+                        <hr class="hr" style="color: rgb(48, 138, 146); block-size: 2px;">
+                        <div class="row">
+                          <div class="row mt-5">
+                            <h1 class="mb-3 h3">Services</h1>
+                            <div class="col-md-6">
+                              <label for="RechargeServices" class="form-label">Recharge Services</label>
+                              <select class="form-select" name="RechargeServices" id="RechargeServices">
+                                <option value="active" <% if (user.RechargeServices === "active") { %>selected<% } %>>Active</option>
+                                <option value="inactive" <% if (user.RechargeServices === "inactive") { %>selected<% } %>>Inactive</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="MoneyServices" class="form-label">Money Services</label>
+                              <select class="form-select" name="MoneyServices" id="MoneyServices">
+                                <option value="active" <% if (user.MoneyServices === "active") { %>selected<% } %>>Active</option>
+                                <option value="inactive" <% if (user.MoneyServices === "inactive") { %>selected<% } %>>Inactive</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mb-5">
+                            <div class="col-md-6">
+                              <label for="AepsServices" class="form-label">AEPS Services</label>
+                              <select class="form-select" name="AepsServices" id="AepsServices">
+                                <option value="active" <% if (user.AepsServices === "active") { %>selected<% } %>>Active</option>
+                                <option value="inactive" <% if (user.AepsServices === "inactive") { %>selected<% } %>>Inactive</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="PayoutServices" class="form-label">Payout Services</label>
+                              <select class="form-select" name="PayoutServices" id="PayoutServices">
+                                <option value="active" <% if (user.PayoutServices === "active") { %>selected<% } %>>Active</option>
+                                <option value="inactive" <% if (user.PayoutServices === "inactive") { %>selected<% } %>>Inactive</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="numberInput">Current Balance</label>
+                          <input type="number" name="balance" id="numberInput" class="form-control" min="0" max="100" step="1" 
+                            placeholder="Amount" value="<%= user.wallet? user.wallet.balance :0 %>" readonly>
+                      </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary sendEmail()">Add User</button>
+                                
+                            </div>
+                        </div>
+
+            </form>
+            <% } else { %>
+              <p>User not found.</p>
+            <% } %>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- ... (existing code) -->
+<!-- Add the following script before the closing </body> tag in your HTML file -->
+<script>
+  const countryDropdown = document.getElementById('countryDropdown');
+  const stateDropdown = document.getElementById('stateDropdown');
+  const cityDropdown = document.getElementById('cityDropdown');
+
+
+
+  // Function to fetch countries and populate the country dropdown
+  async function fetchCountries() {
+    try {
+      const response = await fetch('/api/countries');
+      const countries = await response.json();
+
+      countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.isoCode;
+        option.textContent = country.name;
+        countryDropdown.appendChild(option);
+        
+      
+      });
+    } catch (error) {
+      console.error('Error fetching countries:', error);
+    }
+  }
+
+  // Function to fetch states and populate the state dropdown
+  async function fetchStates() {
+    const countryCode = (countryDropdown.value);
+    
+
+    try {
+      const response = await fetch(`/states/${countryCode}`);
+      const states = await response.json();
+
+      stateDropdown.innerHTML = '<option value="" disabled selected>Select State</option>'; // Clear existing options
+
+      states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.isoCode;
+        option.textContent = state.name;
+        stateDropdown.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error fetching states:', error);
+    }
+  }
+
+  // Function to fetch cities and populate the city dropdown
+  // Function to fetch cities and populate the city dropdown
+async function fetchCities() {
+const countryCode = countryDropdown.value;
+const stateCode = stateDropdown.value;
+
+try {
+  const response = await fetch(`/cities/${countryCode}/${stateCode}`);
+  
+  const cities = await response.json();
+
+  cityDropdown.innerHTML = '<option value="" disabled selected>Select City</option>'; // Clear existing options
+  
+  cities.forEach(city => {
+    const option = document.createElement('option');
+    option.value = city.name;
+    option.textContent = city.name;
+    cityDropdown.appendChild(option);
+  });
+} catch (error) {
+  console.error('Error fetching cities:', error);
+}
+}
+
+
+  // Fetch countries on page load
+  fetchCountries();
+
+  // Add event listeners to the country and state dropdowns
+  countryDropdown.addEventListener('change', fetchStates);
+  stateDropdown.addEventListener('change', fetchCities);
+ 
+</script>
+<!-- -------------------present countrystate city--------- -->
+
+<script>
+  
+  const countryDropdown1 = document.getElementById('countryDropdown1');
+  const stateDropdown1 = document.getElementById('stateDropdown1');
+  const cityDropdown1 = document.getElementById('cityDropdown1');
+
+  // Function to fetch countries and populate the country dropdown
+  async function fetchCountries() {
+    try {
+      const response = await fetch('/api/countries');
+      const countries = await response.json();
+
+      countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.isoCode;
+        option.textContent = country.name;
+        countryDropdown1.appendChild(option);
+        
+      
+      });
+    } catch (error) {
+      console.error('Error fetching countries:', error);
+    }
+  }
+
+  // Function to fetch states and populate the state dropdown
+  async function fetchStates() {
+    const countryCode = (countryDropdown1.value);
+    
+
+    try {
+      const response = await fetch(`/states/${countryCode}`);
+      const states = await response.json();
+
+      stateDropdown1.innerHTML = '<option value="" disabled selected>Select State</option>'; // Clear existing options
+
+      states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.isoCode;
+        option.textContent = state.name;
+        stateDropdown1.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error fetching states:', error);
+    }
+  }
+
+  // Function to fetch cities and populate the city dropdown
+  // Function to fetch cities and populate the city dropdown
+async function fetchCities() {
+const countryCode = countryDropdown1.value;
+const stateCode = stateDropdown1.value;
+
+try {
+  const response = await fetch(`/cities/${countryCode}/${stateCode}`);
+  
+  const cities = await response.json();
+
+  cityDropdown1.innerHTML = '<option value="" disabled selected>Select City</option>'; // Clear existing options
+  
+  cities.forEach(city => {
+    const option = document.createElement('option');
+    option.value = city.name;
+    option.textContent = city.name;
+    cityDropdown1.appendChild(option);
+  });
+} catch (error) {
+  console.error('Error fetching cities:', error);
+}
+}
+
+
+  // Fetch countries on page load
+  fetchCountries();
+
+  // Add event listeners to the country and state dropdowns
+  countryDropdown1.addEventListener('change', fetchStates);
+  stateDropdown1.addEventListener('change', fetchCities);
+ 
+</script>
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+
